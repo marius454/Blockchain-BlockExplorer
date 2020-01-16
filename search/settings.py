@@ -25,7 +25,7 @@ SECRET_KEY = 'tw8g+i^i0)288z%qhh79bj-pu^$6$mz(yk#qvh32!ahqy0h7cj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 STATICFILES_DIRS = ["C:/Users/Marius/Desktop/5 semestro uzrasai/Uzduotys/Block-chain/Uzduotis 5/djangoProject/search/static"]
 
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blocks',
-    'transactions',
 ]
 
 MIDDLEWARE = [
