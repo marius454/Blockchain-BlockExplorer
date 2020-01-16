@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}?version={% now 'U' %}">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+</head>
+<body>
+{% block content %}
+<form class="inputForms" method="get", action ="">
+	<div class="searchBlock">
+		<input type="submit" value="search"></input>
+		<input type="text" name="blockID" placeholder="Enter block height or hash">
+	</div>
+</form>
+<form method="get", action ="">
+	<div class="searchBlockInterval">
+		<input type="submit" value="search"></input>
+		<input type="text" name="blockIdStart" placeholder="Enter start of block interval">
+		<input type="text" name="blockIdEnd" placeholder="Enter end of block interval">
+	</div>
+</form>
+<form method="get", action ="">
+	<div class="searchTransaction">
+		<input type="submit" value="search"></input>
+		<input type="text" name="txID" placeholder="Enter transaction hash">
+	</div>
+</form>
+<div class="blockList">
+	<ul>
+		{% for item in blocks %}
+			<li><a href="http://127.0.0.1:8000/blocks/?blockID={{ item.height }}">Block Nr:{{ item.height }} <br>Block Hash:{{ item.hash }}</a></li>
+		{% endfor %}
+		{% for item in transactions %}
+			<li><a href="http://127.0.0.1:8000/transactions/?txID={{ item.hash }}">Transaction Hash:{{ item.hash }}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+
+
+<!-- <form style="margin: 10px">
+  <div class="form-group">
+    <label for="formGroupExampleInput">Search Blocks</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Type block number or hash">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Search Transactions</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Type transaction hash">
+  </div>
+</form> -->
+
+{% endblock content %}
+
+</body>
+<!-- <script src="{% static 'js/main.js' %}"></script> -->
+</html>

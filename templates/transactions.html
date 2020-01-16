@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}?version={% now 'U' %}">
+<style>
+.blockList {
+  margin-left: auto;
+  margin-right: auto;
+}
+.blockList li a {
+	padding-left: 0px;
+}
+table {
+  font: 200 16px/1.5 Helvetica, Verdana, sans-serif;
+  border-collapse: collapse;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-weight:normal
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+{% block content %}
+<a href="http://127.0.0.1:8000">Back to search page</a>
+<h2 align="center"> Transaction {{ txHash }} </h2>
+
+<!-- {% for item in blocks %}
+	<p>{{ item.key }}: {{ item.value }}</p>
+{% endfor %} -->
+<table>
+	<tr>
+		<th style="font-weight: bold">Property:</th>
+		<th style="font-weight: bold">Value:</th>
+	</tr>
+	{% for item in tx %}
+	<tr>
+		<th>{{ item.key }}</th>
+		<th>{{ item.value }}</th>
+	</tr>
+	{% endfor %}
+	<tr>
+		<th style="font-weight: bold">Input Adress:</th>
+		<th style="font-weight: bold">Input Value:</th>
+	</tr>
+	{% for item in inputs %}
+	<tr>
+		<th>{{ item.address }}</th>
+		<th>{{ item.value }}</th>
+	</tr>
+	{% endfor %}
+	<tr>
+		<th style="font-weight: bold">Output Adress:</th>
+		<th style="font-weight: bold">Output Value:</th>
+	</tr>
+	{% for item in outputs %}
+	<tr>
+		<th>{{ item.address }}</th>
+		<th>{{ item.value }}</th>
+	</tr>
+	{% endfor %}
+
+</table>
+
+<!-- <div class="blockList">
+	<ul>
+		{% for item in transactions %}
+			<li><a align="center" href=".">Transaction Hash:{{ item }}</a></li>
+		{% endfor %}
+	</ul>
+</div> -->
+
+{% endblock content %}
+</body>
+</html>
